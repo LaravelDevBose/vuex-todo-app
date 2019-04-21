@@ -3,20 +3,7 @@ import axios from 'axios';
 
 //declare state
 const state = {
-    todos:[
-        {
-            id:1,
-            title:'Todo One'
-        },
-        {
-            id:2,
-            title:'Todo Two'
-        },
-        {
-            id:3,
-            title:'Todo Three'
-        }
-    ]
+    todos:[]
 };
 
 
@@ -27,11 +14,18 @@ const getters = {
 
 
 //declare actions
-const actions = {};
+const actions = {
+    async fatchTodos({commit}){
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
+        commit('setTodos',response.data);
+    }
+};
 
 
 //declare mutations
-const mutations = {};
+const mutations = {
+    setTodos:(state, todos)=>(state.todos = todos)
+};
 
 export default {
     state,

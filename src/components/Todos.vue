@@ -3,35 +3,31 @@
         <v-card>
             <form class="px-3 my-5 py-3">
                 <v-text-field
-                        v-model="name"
-                        :error-messages="nameErrors"
+                        v-model="title"
                         :counter="10"
                         label="Name"
                         required
-                        @input="$v.name.$touch()"
-                        @blur="$v.name.$touch()"
+                        @input="$v.title.$touch()"
+                        @blur="$v.title.$touch()"
                 ></v-text-field>
                 <v-textarea
                         v-model="details"
-                        :error-messages="emailErrors"
                         label="Todo details"
                         required
                         :counter="70"
-                        @input="$v.email.$touch()"
-                        @blur="$v.email.$touch()"
+                        @input="$v.details.$touch()"
+                        @blur="$v.details.$touch()"
                 ></v-textarea>
 
                 <v-checkbox
-                        v-model="checkbox"
-                        :error-messages="checkboxErrors"
+                        v-model="completed"
                         label="Is Complete?"
-                        required
-                        @change="$v.checkbox.$touch()"
-                        @blur="$v.checkbox.$touch()"
+                        @change="$v.completed.$touch()"
+                        @blur="$v.completed.$touch()"
                 ></v-checkbox>
 
-                <v-btn @click="submit">submit</v-btn>
-                <v-btn @click="clear">clear</v-btn>
+                <v-btn >submit</v-btn>
+                <v-btn >clear</v-btn>
             </form>
         </v-card>
         <v-card>
@@ -59,10 +55,26 @@
 
 <script>
 
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
 
     export default {
         name: "Todos",
+        data(){
+            return{
+                title:null,
+                details:null,
+                completed:false,
+
+            }
+        },
+        created(){
+            this.fatchTodos();
+        },
+        methods:{
+          ...mapActions([
+              'fatchTodos',
+          ]),
+        },
         computed:{
             ...mapGetters([
                 'allTodos',
