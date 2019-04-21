@@ -8,18 +8,23 @@
     </v-toolbar>
 
     <v-content>
-      <Todos/>
+      <v-flex xs12 sm6 offset-sm3 mt-3>
+        <AddTodo/>
+        <Todos/>
+      </v-flex>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Todos from './components/Todos'
+import AddTodo from './components/AddTodo'
 
 export default {
   name: 'App',
   components: {
-    Todos
+    Todos,
+    AddTodo
   },
   data () {
     return {
