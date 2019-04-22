@@ -15,6 +15,12 @@
                             </template>
                             <v-card>
                                 <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+                                <v-btn icon color="success">
+                                    <v-icon>done</v-icon>
+                                </v-btn>
+                                <v-btn @click="deleteTodo(todo.id)" icon color="error">
+                                    <v-icon>delete</v-icon>
+                                </v-btn>
                             </v-card>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
@@ -39,6 +45,7 @@
         methods:{
           ...mapActions([
               'fatchTodos',
+              'deleteTodo'
           ]),
         },
         computed:{
